@@ -1,0 +1,15 @@
+<div *ngFor="let task of tasks; let i = index" [ngClass]="{'completed': task.status === 'complete'}"
+     [ngStyle]="{'background-color': task.status === 'complete' ? 'lightgreen' : (i % 2 === 0 ? '#f2f2f2' : '#fff')}">
+  <span [ngSwitch]="task.type">
+    <i *ngSwitchCase="'work'" class="icon">🖥️</i>
+    <i *ngSwitchCase="'home'" class="icon">🏠</i>
+    <i *ngSwitchCase="'exercise'" class="icon">🏋️</i>
+    <i *ngSwitchDefault class="icon">📋</i>
+  </span>
+
+  <span>{{ task.name }}</span>
+
+  <span *ngIf="task.status === 'complete'" class="completed-icon">✔️</span>
+
+  <button (click)="completeTask(task)">Complete</button>
+</div>
